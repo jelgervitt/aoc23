@@ -999,21 +999,21 @@ v4
 gqrnpz5sth
 xcsmcfour3eightts
 eight691seven8cxdbveightzv
-onenjhcd9`
+onenjhcd9`;
 
 /************************************************** part one **********************************************************/
 
-function calVal (input) {
+function calVal(input) {
     const lines = input.split('\n');
     let acc = 0;
-    
-    lines.forEach(line => {
+
+    lines.forEach((line) => {
         let a = line.match(/\d/)[0];
         let b = line.split('').reverse().join('').match(/\d/)[0];
         let c = parseInt(a + b);
         acc += c;
-    })
-    console.log(acc)
+    });
+    console.log(acc);
 }
 
 // calVal(input);
@@ -1024,40 +1024,53 @@ function calAlphaVal(input) {
     const lines = input.split('\n');
     let acc = 0;
 
-    lines.forEach(line => {
-        let matches = [...line.matchAll(/\d|one|two|three|four|five|six|seven|eight|nine/g)];
-        let arr = [matches[0][0], [...matches.slice(-1)[0]][0]]
+    lines.forEach((line) => {
+        let matches = [
+            ...line.matchAll(
+                /\d|one|two|three|four|five|six|seven|eight|nine/g
+            ),
+        ];
+        let arr = [matches[0][0], [...matches.slice(-1)[0]][0]];
         for (let i = 0; i < arr.length; i++) {
-            const re = new RegExp('\d')
+            const re = new RegExp('d');
             let el = arr[i];
-            if (! re.test(el)) {
+            if (!re.test(el)) {
                 switch (el) {
-                    case 'one': el = 1;
-                    break;
-                    case 'two': el = 2;
-                    break;
-                    case 'three': el = 3;
-                    break;
-                    case 'four': el = 4;
-                    break;
-                    case 'five': el = 5;
-                    break;
-                    case 'six' : el = 6;
-                    break;
-                    case 'seven': el = 7;
-                    break;
-                    case 'eight': el = 8;
-                    break;
-                    case 'nine': el = 9;
-                    break;
+                    case 'one':
+                        el = 1;
+                        break;
+                    case 'two':
+                        el = 2;
+                        break;
+                    case 'three':
+                        el = 3;
+                        break;
+                    case 'four':
+                        el = 4;
+                        break;
+                    case 'five':
+                        el = 5;
+                        break;
+                    case 'six':
+                        el = 6;
+                        break;
+                    case 'seven':
+                        el = 7;
+                        break;
+                    case 'eight':
+                        el = 8;
+                        break;
+                    case 'nine':
+                        el = 9;
+                        break;
                 }
             }
             arr[i] = el;
         }
         let c = parseInt(arr.join(''));
         acc += c;
-    })
-    console.log(acc)
+    });
+    console.log(acc);
 }
 
 calAlphaVal(input);
@@ -1092,7 +1105,7 @@ calAlphaVal(input);
 //         }
 //         arr[i] = el;
 //     }
-    
+
 // }
 
 // // console.log(arr);
