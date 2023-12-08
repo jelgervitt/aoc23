@@ -1068,6 +1068,7 @@ function calAlphaVal(input) {
             arr[i] = el;
         }
         let c = parseInt(arr.join(''));
+        console.log(c);
         acc += c;
     });
     console.log(acc);
@@ -1075,37 +1076,28 @@ function calAlphaVal(input) {
 
 calAlphaVal(input);
 
-// const test = 'threeeighttwo691seven8cxdbvthreeeightzv';
-// let res = [...test.matchAll(/\d|one|two|three|four|five|six|seven|eight|nine/g)];
-// let e = [...res.slice(-1)[0]][0]
-// let arr = [res[0][0], [...res.slice(-1)[0]][0]];
-// for (let i = 0; i < arr.length; i++) {
-//     const re = new RegExp('\d')
-//     let el = arr[i];
-//     if (! re.test(el)) {
-//         switch (el) {
-//             case 'one': el = 1;
-//             break;
-//             case 'two': el = 2;
-//             break;
-//             case 'three': el = 3;
-//             break;
-//             case 'four': el = 4;
-//             break;
-//             case 'five': el = 5;
-//             break;
-//             case 'six' : el = 6;
-//             break;
-//             case 'seven': el = 7;
-//             break;
-//             case 'eight': el = 8;
-//             break;
-//             case 'nine': el = 9;
-//             break;
-//         }
-//         arr[i] = el;
-//     }
+// issue with my code (above) was that the matchAll() function keeps track of the lastIndex, and continues from there for the next search. So in the scenario of for instance the 'twone' string, it would search from left to right, find 'two', and for the next search look at 'ne' instead of seeing 'one'. This caused a discrepancy in my code's final count (55061). After a lot of research online, trying a solution that did work, and comparing the outputs of both code sets, I found this error. I guess that's learning...
 
-// }
+// Solution from another player that does work
+let total = 0;
+const numberMappings = {
+    one: 'one1one',
+    two: 'two2two;',
+    three: 'three3three',
+    four: 'four4four',
+    five: 'five5five',
+    six: 'six6six',
+    seven: 'seven7seven',
+    eight: 'eight8eight',
+    nine: 'nine9nine',
+};
 
-// // console.log(arr);
+for (let line of input.split('\n')) {
+    for (let num of Object.keys(numberMappings)) {
+        line = line.replaceAll(num, numberMappings[num]);
+    }
+
+    const numbers = line.split('').filter((el) => !isNaN(parseInt(el)));
+    // console.log(`${numbers[0]}${numbers[numbers.length - 1]}`);
+    total += parseInt(`${numbers[0]}${numbers[numbers.length - 1]}`);
+}
