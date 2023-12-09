@@ -120,17 +120,33 @@ outerloop: for (let i = 0; i < parsed.length; i++) {
     let greens = line.match(/\d+(?=\sgreen)/g);
     let blues = line.match(/\d+(?=\sblue)/g);
 
-    for (let rScore of reds) {
-        if (rScore > 12) continue outerloop;
-    }
-    for (let gScore of greens) {
-        if (gScore > 13) continue outerloop;
-    }
-    for (let bScore of blues) {
-        if (bScore > 14) continue outerloop;
-    }
+    // solution for part 1
+    // for (let rScore of reds) {
+    //     if (rScore > 12) continue outerloop;
+    // }
+    // for (let gScore of greens) {
+    //     if (gScore > 13) continue outerloop;
+    // }
+    // for (let bScore of blues) {
+    //     if (bScore > 14) continue outerloop;
+    // }
+    totalPtOne += i + 1;
 
-    total = total + (i + 1);
+    // solution for part 2
+    let hR =
+        reds?.reduce((high, curr) =>
+            parseInt(curr) > high ? parseInt(curr) : high
+        ) || 1;
+    let hG =
+        greens?.reduce((high, curr) =>
+            parseInt(curr) > high ? parseInt(curr) : high
+        ) || 1;
+    let hB =
+        blues?.reduce((high, curr) =>
+            parseInt(curr) > high ? parseInt(curr) : high
+        ) || 1;
+    let setPower = hR * hG * hB;
+    totalPtTwo += setPower;
 }
 
-console.log(total);
+// console.log();
