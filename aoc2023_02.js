@@ -131,7 +131,7 @@ outerloop: for (let i = 0; i < parsed.length; i++) {
     //     if (bScore > 14) continue outerloop;
     // }
     totalPtOne += i + 1;
-
+    /************************************************** part two *********************************************************/
     // solution for part 2
     let hR =
         reds?.reduce((high, curr) =>
